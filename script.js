@@ -1,11 +1,5 @@
 const options = ["rock", "paper", "scissors"];
 
-const getComputerChoice = () => options[Math.floor(Math.random() * options.length)];
-
-const playerSelection = prompt("Rock, paper or scissors?").toLowerCase();
-
-const choices = [playerSelection, getComputerChoice()];
-
 function whoWins(x, y) {
     if (x == 0) {
         return `You win, ${y[0]} beats ${y[1]}!`;
@@ -29,4 +23,29 @@ function playRound(choices) {
     }
 }
 
-console.log(playRound(choices));
+function game() {
+    let winCounter = 0;
+    let loseCounter = 0;
+    for (let i = 1; i < 6; i++) {
+        const getComputerChoice = () => options[Math.floor(Math.random() * options.length)];
+        const playerSelection = prompt(`Round ${i}! Rock, paper or scissors?`).toLowerCase();
+        const choices = [playerSelection, getComputerChoice()];
+        const result = playRound(choices);
+        if (result.includes("win")) {
+            winCounter++;
+        } else if (result.includes("lose")) {
+            loseCounter++;
+        }
+    }
+    
+    if (winCounter > loseCounter) {
+        return("You win!");
+    } else if (loseCounter > winCounter) {
+        return("You lose!");
+    } else {
+        return("Draw");
+    }
+}
+
+console.log(game());
+
