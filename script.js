@@ -1,6 +1,7 @@
 const rock = document.getElementById("rock");
 const paper = document.getElementById("paper");
 const scissors = document.getElementById("scissors");
+const result = document.getElementById("result");
 
 let choices = [];
 
@@ -11,6 +12,9 @@ const getComputerChoice = () => options[Math.floor(Math.random() * options.lengt
 rock.addEventListener("click", function() {playRound("rock")});
 paper.addEventListener("click", function() {playRound("paper")});
 scissors.addEventListener("click", function() {playRound("scissors")});
+
+const thisTurn = document.createElement('p');
+
 
 
 function whoWins(x, y) {
