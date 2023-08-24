@@ -8,18 +8,9 @@ const options = ["rock", "paper", "scissors"];
 
 const getComputerChoice = () => options[Math.floor(Math.random() * options.length)];
 
-function pusher(x) {
-    choices.push(x);
-};
-
-rock.addEventListener("click", pusher("rock"));
-paper.addEventListener("click", playRound(["paper", getComputerChoice]));
-scissors.addEventListener("click", playRound(["scissors", getComputerChoice]));
-
-choices.push(getComputerChoice());
-
-console.log(choices);
-
+rock.addEventListener("click", function() {playRound("rock")});
+paper.addEventListener("click", function() {playRound("paper")});
+scissors.addEventListener("click", function() {playRound("scissors")});
 
 
 function whoWins(x, y) {
@@ -30,9 +21,10 @@ function whoWins(x, y) {
     }
 }
 
-function playRound(choices) {
+function playRound(x) {
+    const choices = [x, getComputerChoice()];
     if (choices[0] == choices[1]) {
-        return "Draw!";
+        console.log("Draw!");
     } else if (choices.includes("rock") && choices.includes("paper")) {
         const winner = choices.indexOf("paper");
         return whoWins(winner, choices);
