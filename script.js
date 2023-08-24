@@ -1,10 +1,32 @@
+const rock = document.getElementById("rock");
+const paper = document.getElementById("paper");
+const scissors = document.getElementById("scissors");
+
+let choices = [];
+
 const options = ["rock", "paper", "scissors"];
+
+const getComputerChoice = () => options[Math.floor(Math.random() * options.length)];
+
+function pusher(x) {
+    choices.push(x);
+};
+
+rock.addEventListener("click", pusher("rock"));
+paper.addEventListener("click", playRound(["paper", getComputerChoice]));
+scissors.addEventListener("click", playRound(["scissors", getComputerChoice]));
+
+choices.push(getComputerChoice());
+
+console.log(choices);
+
+
 
 function whoWins(x, y) {
     if (x == 0) {
-        return `You win, ${y[0]} beats ${y[1]}!`;
+        console.log(`You win, ${y[0]} beats ${y[1]}!`);
     } else {
-        return `You lose, ${y[1]} beats ${y[0]}!`;
+        console.log(`You lose, ${y[1]} beats ${y[0]}!`);
     }
 }
 
@@ -23,20 +45,19 @@ function playRound(choices) {
     }
 }
 
+/*
 function game() {
     let winCounter = 0;
     let loseCounter = 0;
-    for (let i = 1; i < 6; i++) {
-        const getComputerChoice = () => options[Math.floor(Math.random() * options.length)];
-        const playerSelection = prompt(`Round ${i}! Rock, paper or scissors?`).toLowerCase();
-        const choices = [playerSelection, getComputerChoice()];
-        const result = playRound(choices);
-        if (result.includes("win")) {
-            winCounter++;
-        } else if (result.includes("lose")) {
-            loseCounter++;
-        }
-    }
+    const getComputerChoice = () => options[Math.floor(Math.random() * options.length)];
+    const playerSelection = prompt(`Round 1! Rock, paper or scissors?`).toLowerCase();
+    const choices = [playerSelection, getComputerChoice()];
+    const result = playRound(choices);
+    if (result.includes("win")) {
+        winCounter++;
+    } else if (result.includes("lose")) {
+        loseCounter++;
+    };
     
     if (winCounter > loseCounter) {
         return("You win!");
@@ -48,4 +69,5 @@ function game() {
 }
 
 console.log(game());
+*/
 
